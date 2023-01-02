@@ -1,12 +1,12 @@
-baseurl: https://puda14.github.io
+baseurl: https://dodero10.github.io/
 languageCode: en-us
 theme: hugo-theme-stack
 paginate: 5
-title: Puda14
+title: Dodero
 enableGitInfo: true
 
 # Change it to your Disqus shortname before using
-disqusShortname: Puda14
+disqusShortname: Dodero
 
 # GA Tracking ID
 googleAnalytics:
@@ -36,7 +36,7 @@ params:
 
     sidebar:
         emoji: 🤓
-        subtitle: Hi, I'm Puda I'm a student. More at About page.
+        subtitle: Hi, I'm Dodero I'm a student. More at About page.
         avatar:
             enabled: true
             local: true

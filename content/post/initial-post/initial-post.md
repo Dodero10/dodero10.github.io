@@ -6,7 +6,7 @@ title: "Initial Post"
 description: Lorem ipsum dot sit amet
 
 # Author of the article
-author: Puda14
+author: Dodero
 
 # Appears as the tail of the output URL.
 slug: "initial-post"
