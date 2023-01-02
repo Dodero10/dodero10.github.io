@@ -6,7 +6,7 @@ title: "Course Condition in HUST"
 description: Tool to check course conditions for HUST student.
 
 # Author of the article
-author: Puda14
+author: Dodero
 
 # Appears as the tail of the output URL.
 slug: "course-condition-in-hust"
@@ -52,12 +52,17 @@ license:
 ---
 
 # Problem
-updating...
+Many HUST students are not eligible to take the course in the next semester because they do not complete the required courses. That makes it difficult for students to complete the program on time without following detailed qualifying courses. Keeping track of the conditional course makes students spend a lot of time and can't observe all of them.
 # Solution
-updating...
+We have put into use this dependent module drawing model to make it easier to track students' conditional courses.
 ## Operation
-updating...
+Source data is downloaded from https://ctt-sis.hust.edu.vn/pub/CourseLists.aspx
+then analyze the condition information and build the family tree of the modules.
+Limits: new condition support and, or. Parallel subjects are considered as conditions and.
 ## Usage
-updating...
+- ver 1: Display all the courses that are dependent on the set of interest.
+- ver 2: Continue tracing to form a full tree branch of dependent modules.
+- ver 3: Displays the course name, number of credits, tuition credits, and weights at the end of the semester.
+*If no graphs are displayed, the set code does not exist in the database.
 # Prize
-updating...
+We were fortunate to get the third prize in the contest "HIGH APPLICATION MVP PRODUCTS CONTEST 2022" organized by SVMC (Samsung Vietnam Mobile R&D Center) and SOICT. This reward is also a motivation for us to develop this product even better
