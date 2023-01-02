@@ -64,5 +64,6 @@ Limits: new condition support and, or. Parallel subjects are considered as condi
 - ver 2: Continue tracing to form a full tree branch of dependent modules.
 - ver 3: Displays the course name, number of credits, tuition credits, and weights at the end of the semester.
 *If no graphs are displayed, the set code does not exist in the database.
+You can use it at: http://sinno.soict.ai/dkhp.html
 # Prize
 We were fortunate to get the third prize in the contest "HIGH APPLICATION MVP PRODUCTS CONTEST 2022" organized by SVMC (Samsung Vietnam Mobile R&D Center) and SOICT. This reward is also a motivation for us to develop this product even better
