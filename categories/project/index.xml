@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project on Truong Cong Dat</title>
+    <link>https://dodero10.github.io/categories/project/</link>
+    <description>Recent content in Project on Truong Cong Dat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://dodero10.github.io/categories/project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Course Condition in HUST</title>
+      <link>https://dodero10.github.io/p/course-condition-in-hust/</link>
+      <pubDate>Tue, 27 Dec 2022 00:36:17 +0700</pubDate>
+      
+      <guid>https://dodero10.github.io/p/course-condition-in-hust/</guid>
+      <description>Problem Many HUST students are not eligible to take the course in the next semester because they do not complete the required courses. That makes it difficult for students to complete the program on time without following detailed qualifying courses. Keeping track of the conditional course makes students spend a lot of time and can&amp;rsquo;t observe all of them.
+Solution We have put into use this dependent module drawing model to make it easier to track students&amp;rsquo; conditional courses.</description>
+    </item>
+    
+  </channel>
+</rss>
