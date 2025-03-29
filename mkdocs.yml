@@ -1,1 +1,74 @@
-site_name: My Docs
+site_name: Dodero
+site_url: https://dodero10.github.io
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - toc.follow      # Makes TOC follow the user as they scroll
+  palette:
+    # Optional color scheme customization
+    primary: indigo
+    accent: indigo
+  # logo: assets/avatar.jpg
+  # favicon: assets/avatar.jpg
+  # icon:
+  #   logo: material/account-circle
+
+nav:
+  - Home: index.md
+  - Blog:
+    - blog/index.md
+    - Technology: 
+      - blog/technology/post1.md
+      - blog/technology/post2.md
+      - blog/technology/post3.md
+    - Personal: 
+      - blog/personal/post1.md
+      - blog/personal/post2.md
+      - blog/personal/post3.md
+    - Travel: 
+      - blog/travel/post1.md
+      - blog/travel/post2.md
+      - blog/travel/post3.md
+  - Projects:
+    - projects/index.md
+    - Web Development: 
+      - projects/web/project1.md
+      - projects/web/project2.md
+      - projects/web/project3.md
+    - Data Science: 
+      - projects/data-science/project1.md
+      - projects/data-science/project2.md
+      - projects/data-science/project3.md
+    - Mobile Apps: 
+      - projects/mobile/project1.md
+      - projects/mobile/project2.md
+      # - projects/mobile/project3.md  # Commenting out since file doesn't exist yet
+  # - Learn:
+  #   - learn/index.md
+  #   - Programming: 
+  #     - learn/programming/tutorial1.md
+  #     - learn/programming/tutorial2.md
+  #     - learn/programming/tutorial3.md
+  #   - Machine Learning: 
+  #     - learn/machine-learning/tutorial1.md
+  #     - learn/machine-learning/tutorial2.md
+  #     - learn/machine-learning/tutorial3.md
+  #   - Cloud Computing: 
+  #     - learn/cloud/tutorial1.md
+  #     - learn/cloud/tutorial2.md
+  #     - learn/cloud/tutorial3.md
+  - About: about.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - admonition
+  - toc:
+      permalink: true
+
+plugins:
+  - search
