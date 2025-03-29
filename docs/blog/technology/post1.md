@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # The Future of Web Development
 
 **Published: June 15, 2023**

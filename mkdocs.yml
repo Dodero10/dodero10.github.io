@@ -2,6 +2,7 @@ site_name: Dodero
 site_url: https://dodero10.github.io
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.sections
@@ -61,6 +62,7 @@ nav:
   #     - learn/cloud/tutorial2.md
   #     - learn/cloud/tutorial3.md
   - About: about.md
+  - Setup: setup-github-comments.md
 
 markdown_extensions:
   - pymdownx.highlight
@@ -72,3 +74,4 @@ markdown_extensions:
 
 plugins:
   - search
+  - meta
