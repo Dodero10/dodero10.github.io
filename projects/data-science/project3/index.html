@@ -1,0 +1,2425 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dodero10.github.io/projects/data-science/project3/">
+      
+      
+        <link rel="prev" href="../project2/">
+      
+      
+        <link rel="next" href="../../mobile/project1/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Real Estate Price Prediction Model - Dodero</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#real-estate-price-prediction-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Dodero" class="md-header__button md-logo" aria-label="Dodero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dodero
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Real Estate Price Prediction Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Dodero" class="md-nav__button md-logo" aria-label="Dodero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dodero
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Technology
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/technology/post1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Future of Web Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/technology/post2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker Containerization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/technology/post3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why TypeScript is Worth the Extra Effort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Personal
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Personal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/personal/post1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing a Morning Routine That Changed My Life
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/personal/post2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Digital Minimalism: How I Reclaimed My Attention and Focus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/personal/post3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Power of Deliberate Practice: How I Learned Piano at 30
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Travel
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Travel
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/travel/post1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A Week in Tokyo: Beyond the Tourist Traps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/travel/post2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Desert Dreams: Two Weeks Road Tripping Through the American Southwest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/travel/post3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Land of Fire and Ice: 10 Days Circling Iceland's Ring Road
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Web Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Web Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/project1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modern E-Commerce Platform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/project2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Portfolio Website Template
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/project3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Headless CMS for Developers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Data Science
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Data Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Social Media Sentiment Analysis Tool
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Customer Churn Prediction Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Real Estate Price Prediction Model
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Real Estate Price Prediction Model
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources-and-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Sources and Processing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Sources and Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Data Sources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traditional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traditional Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-engineered-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Engineered Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-cleaning-and-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Cleaning and Preprocessing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-1-models-base-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 1 Models (Base Models)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-2-model-meta-learner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 2 Model (Meta-Learner)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperparameter-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperparameter Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geographic-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geographic Specialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overall-accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overall Accuracy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-by-property-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance by Property Type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-by-price-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance by Price Range
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-importance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Importance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-and-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation and Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation and Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mobile-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mobile Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-applications-and-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Applications and Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-World Applications and Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-residential-brokerage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: Residential Brokerage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-home-renovation-roi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: Home Renovation ROI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenges and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge-1-limited-data-for-luxury-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge 1: Limited Data for Luxury Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-2-rapid-market-changes-during-covid-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge 2: Rapid Market Changes During COVID-19
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-3-explainability-for-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge 3: Explainability for Stakeholders
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Enhancements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Mobile Apps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Mobile Apps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobile/project1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FitTrack: Cross-Platform Fitness Tracking App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobile/project2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    QuickBite: On-Demand Food Delivery App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources-and-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Sources and Processing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Sources and Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Data Sources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traditional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traditional Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-engineered-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Engineered Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-cleaning-and-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Cleaning and Preprocessing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Selection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-1-models-base-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 1 Models (Base Models)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-2-model-meta-learner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level 2 Model (Meta-Learner)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperparameter-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperparameter Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geographic-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geographic Specialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overall-accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overall Accuracy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-by-property-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance by Property Type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-by-price-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance by Price Range
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-importance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Importance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-and-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation and Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation and Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mobile-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mobile Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-applications-and-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Applications and Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-World Applications and Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-residential-brokerage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: Residential Brokerage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-home-renovation-roi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: Home Renovation ROI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenges and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge-1-limited-data-for-luxury-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge 1: Limited Data for Luxury Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-2-rapid-market-changes-during-covid-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge 2: Rapid Market Changes During COVID-19
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-3-explainability-for-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge 3: Explainability for Stakeholders
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Enhancements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="real-estate-price-prediction-model">Real Estate Price Prediction Model<a class="headerlink" href="#real-estate-price-prediction-model" title="Permanent link">&para;</a></h1>
+<p><img alt="Housing Price Prediction" src="../../assets/images/housing-prediction.jpg" /></p>
+<h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
+<p>A machine learning model designed to predict housing prices in metropolitan areas with high accuracy. This project combines traditional real estate valuation methods with advanced data science techniques to help buyers, sellers, and real estate professionals make more informed decisions.</p>
+<h3 id="business-application">Business Application<a class="headerlink" href="#business-application" title="Permanent link">&para;</a></h3>
+<p>The model serves multiple stakeholders in the real estate market:</p>
+<ul>
+<li><strong>Homebuyers</strong>: Assess if a property is fairly priced</li>
+<li><strong>Sellers</strong>: Determine optimal listing prices</li>
+<li><strong>Real Estate Agents</strong>: Provide data-driven price recommendations</li>
+<li><strong>Appraisers</strong>: Supplement traditional valuation methods</li>
+<li><strong>Investors</strong>: Identify undervalued properties in target markets</li>
+</ul>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Property Valuation</strong>: Estimates market value with 92% accuracy (within ±5% of actual sale price)</li>
+<li><strong>Price Trend Analysis</strong>: Projects neighborhood appreciation rates</li>
+<li><strong>Feature Importance</strong>: Identifies which home features most impact value</li>
+<li><strong>Comparable Property Finder</strong>: Suggests similar properties to validate predictions</li>
+<li><strong>Interactive Map</strong>: Visualizes price predictions geographically</li>
+<li><strong>Anomaly Detection</strong>: Flags potentially mispriced listings</li>
+<li><strong>Customizable Models</strong>: Tailored predictions for different property types (single-family, condo, multi-family)</li>
+</ul>
+<h2 id="data-sources-and-processing">Data Sources and Processing<a class="headerlink" href="#data-sources-and-processing" title="Permanent link">&para;</a></h2>
+<h3 id="primary-data-sources">Primary Data Sources<a class="headerlink" href="#primary-data-sources" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>MLS Listings</strong>: 5 years of historical property listings (250,000+ records)</li>
+<li><strong>Tax Assessment Records</strong>: Property characteristics and historical valuations</li>
+<li><strong>Geographic Data</strong>: School districts, crime rates, transit access, flood zones</li>
+<li><strong>Economic Indicators</strong>: Interest rates, employment statistics, migration patterns</li>
+<li><strong>Points of Interest</strong>: Proximity to amenities (schools, parks, shopping, etc.)</li>
+</ol>
+<h3 id="feature-engineering">Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permanent link">&para;</a></h3>
+<p>The model incorporates both traditional and novel engineered features:</p>
+<h4 id="traditional-features">Traditional Features<a class="headerlink" href="#traditional-features" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Square footage, bedrooms, bathrooms</li>
+<li>Lot size, property age, property type</li>
+<li>School district ratings</li>
+<li>Tax assessment history</li>
+</ul>
+<h4 id="advanced-engineered-features">Advanced Engineered Features<a class="headerlink" href="#advanced-engineered-features" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Walk Score™</strong>: Walkability to amenities</li>
+<li><strong>Renovation Index</strong>: Estimated quality/age of renovations</li>
+<li><strong>Proximity Premium</strong>: Distance-weighted score for desirable amenities</li>
+<li><strong>Style Popularity</strong>: Market trend analysis for architectural styles</li>
+<li><strong>View Quality</strong>: Programmatically assessed quality of views</li>
+<li><strong>Noise Exposure</strong>: Estimated ambient noise levels</li>
+<li><strong>Natural Light Score</strong>: Orientation and window analysis</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example of feature engineering for the Proximity Premium</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_proximity_premium</span><span class="p">(</span><span class="n">property_lat</span><span class="p">,</span> <span class="n">property_lng</span><span class="p">,</span> <span class="n">amenities_df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate distance-weighted score for proximity to desirable amenities</span>
+<span class="sd">    Higher score indicates better access to valued amenities</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Property location</span>
+    <span class="n">property_coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">property_lat</span><span class="p">,</span> <span class="n">property_lng</span><span class="p">)</span>
+
+    <span class="c1"># Initialize score components</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;grocery&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;school&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;park&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;transit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;restaurant&#39;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Weights determined from market analysis (which amenities buyers value most)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;grocery&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+        <span class="s1">&#39;school&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+        <span class="s1">&#39;park&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+        <span class="s1">&#39;transit&#39;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
+        <span class="s1">&#39;restaurant&#39;</span><span class="p">:</span> <span class="mf">0.25</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Maximum distances to consider (in miles)</span>
+    <span class="n">max_distances</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;grocery&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s1">&#39;school&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+        <span class="s1">&#39;park&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s1">&#39;transit&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s1">&#39;restaurant&#39;</span><span class="p">:</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Calculate score for each amenity type</span>
+    <span class="k">for</span> <span class="n">amenity_type</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1"># Filter amenities by type</span>
+        <span class="n">type_amenities</span> <span class="o">=</span> <span class="n">amenities_df</span><span class="p">[</span><span class="n">amenities_df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">amenity_type</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">type_amenities</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Calculate distances to all amenities of this type</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">amenity</span> <span class="ow">in</span> <span class="n">type_amenities</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">amenity_coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">amenity</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span> <span class="n">amenity</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
+            <span class="n">distance</span> <span class="o">=</span> <span class="n">haversine</span><span class="p">(</span><span class="n">property_coords</span><span class="p">,</span> <span class="n">amenity_coords</span><span class="p">)</span>
+            <span class="n">distances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+
+        <span class="c1"># Only consider amenities within max distance</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">distances</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">max_distances</span><span class="p">[</span><span class="n">amenity_type</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Score is higher for closer amenities, with diminishing returns for multiples</span>
+        <span class="c1"># We use a logarithmic scale to model this relationship</span>
+        <span class="n">min_distance</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+        <span class="n">num_nearby</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+
+        <span class="c1"># Base score from closest amenity</span>
+        <span class="n">base_score</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">min_distance</span> <span class="o">/</span> <span class="n">max_distances</span><span class="p">[</span><span class="n">amenity_type</span><span class="p">])</span>
+
+        <span class="c1"># Additional score from having multiple options, with diminishing returns</span>
+        <span class="n">diversity_bonus</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">num_nearby</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+
+        <span class="n">scores</span><span class="p">[</span><span class="n">amenity_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_score</span> <span class="o">+</span> <span class="n">diversity_bonus</span>
+
+    <span class="c1"># Calculate weighted total score</span>
+    <span class="n">total_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">total_score</span>
+</code></pre></div>
+<h3 id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing<a class="headerlink" href="#data-cleaning-and-preprocessing" title="Permanent link">&para;</a></h3>
+<p>The dataset required extensive cleaning due to:</p>
+<ul>
+<li>Incomplete listings</li>
+<li>Inconsistent feature names</li>
+<li>Outliers from luxury properties and foreclosures</li>
+<li>Duplicate listings</li>
+<li>Missing values</li>
+</ul>
+<p>Our preprocessing pipeline included:</p>
+<ol>
+<li><strong>Outlier Removal</strong>: IQR-based filtering for extreme values</li>
+<li><strong>Missing Value Imputation</strong>: KNN imputation for missing numeric features</li>
+<li><strong>Feature Scaling</strong>: Standardization for numeric features</li>
+<li><strong>Categorical Encoding</strong>: Target encoding for high-cardinality features</li>
+<li><strong>Temporal Features</strong>: Creation of market cycle indicators</li>
+</ol>
+<h2 id="model-architecture">Model Architecture<a class="headerlink" href="#model-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="model-selection">Model Selection<a class="headerlink" href="#model-selection" title="Permanent link">&para;</a></h3>
+<p>After evaluating multiple approaches, we implemented a stacking ensemble with the following components:</p>
+<h4 id="level-1-models-base-models">Level 1 Models (Base Models)<a class="headerlink" href="#level-1-models-base-models" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Gradient Boosting (XGBoost)</strong>: Captures non-linear relationships</li>
+<li><strong>Random Forest</strong>: Handles mixed feature types effectively</li>
+<li><strong>ElasticNet</strong>: Performs well with correlated features</li>
+<li><strong>LightGBM</strong>: Efficient with categorical features</li>
+<li><strong>Neural Network</strong>: 3-layer MLP for complex patterns</li>
+</ul>
+<h4 id="level-2-model-meta-learner">Level 2 Model (Meta-Learner)<a class="headerlink" href="#level-2-model-meta-learner" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Gradient Boosting Regressor</strong>: Combines base model predictions</li>
+</ul>
+<h3 id="hyperparameter-optimization">Hyperparameter Optimization<a class="headerlink" href="#hyperparameter-optimization" title="Permanent link">&para;</a></h3>
+<p>We used Bayesian optimization with 5-fold cross-validation to tune hyperparameters, focusing on:</p>
+<ul>
+<li>Minimizing RMSE (Root Mean Squared Error)</li>
+<li>Preventing overfitting to local market conditions</li>
+<li>Ensuring consistent performance across different property types</li>
+</ul>
+<h3 id="geographic-specialization">Geographic Specialization<a class="headerlink" href="#geographic-specialization" title="Permanent link">&para;</a></h3>
+<p>To account for market-specific factors, we implemented a geographic specialization approach:</p>
+<ol>
+<li>Global model trained on all data</li>
+<li>Local models trained for specific zip codes or neighborhoods</li>
+<li>Weighted blending of predictions based on data density</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># Geographic model blending</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">blend_predictions</span><span class="p">(</span><span class="n">property_data</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">zip_code</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Blend predictions from global and local models based on data availability</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Make prediction with global model</span>
+    <span class="n">global_pred</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="s1">&#39;global&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">property_data</span><span class="p">)</span>
+
+    <span class="c1"># Check if we have a local model for this zip code</span>
+    <span class="k">if</span> <span class="n">zip_code</span> <span class="ow">in</span> <span class="n">models</span><span class="p">[</span><span class="s1">&#39;local&#39;</span><span class="p">]:</span>
+        <span class="n">local_model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="s1">&#39;local&#39;</span><span class="p">][</span><span class="n">zip_code</span><span class="p">]</span>
+        <span class="n">local_data_count</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="s1">&#39;local_counts&#39;</span><span class="p">][</span><span class="n">zip_code</span><span class="p">]</span>
+
+        <span class="c1"># Calculate blending weight based on local data density</span>
+        <span class="c1"># More local data = higher weight to local model</span>
+        <span class="n">local_weight</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">local_data_count</span> <span class="o">/</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+        <span class="n">global_weight</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">local_weight</span>
+
+        <span class="c1"># Predict with local model</span>
+        <span class="n">local_pred</span> <span class="o">=</span> <span class="n">local_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">property_data</span><span class="p">)</span>
+
+        <span class="c1"># Blend predictions</span>
+        <span class="n">final_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">global_weight</span> <span class="o">*</span> <span class="n">global_pred</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">local_weight</span> <span class="o">*</span> <span class="n">local_pred</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># No local model, use global prediction</span>
+        <span class="n">final_pred</span> <span class="o">=</span> <span class="n">global_pred</span>
+
+    <span class="k">return</span> <span class="n">final_pred</span>
+</code></pre></div>
+<h2 id="model-performance">Model Performance<a class="headerlink" href="#model-performance" title="Permanent link">&para;</a></h2>
+<h3 id="overall-accuracy">Overall Accuracy<a class="headerlink" href="#overall-accuracy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RMSE</td>
+<td>$24,831</td>
+</tr>
+<tr>
+<td>MAPE</td>
+<td>3.2%</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>Within ±5%</td>
+<td>81% of predictions</td>
+</tr>
+<tr>
+<td>Within ±10%</td>
+<td>93% of predictions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-by-property-type">Performance by Property Type<a class="headerlink" href="#performance-by-property-type" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property Type</th>
+<th>MAPE</th>
+<th>R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single Family</td>
+<td>3.0%</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>Condominium</td>
+<td>3.4%</td>
+<td>0.91</td>
+</tr>
+<tr>
+<td>Multi-Family</td>
+<td>3.7%</td>
+<td>0.89</td>
+</tr>
+<tr>
+<td>Vacant Land</td>
+<td>5.2%</td>
+<td>0.84</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-by-price-range">Performance by Price Range<a class="headerlink" href="#performance-by-price-range" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Price Range</th>
+<th>MAPE</th>
+<th>R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under $200K</td>
+<td>4.1%</td>
+<td>0.87</td>
+</tr>
+<tr>
+<td>$200K-$500K</td>
+<td>3.0%</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>$500K-$1M</td>
+<td>3.3%</td>
+<td>0.91</td>
+</tr>
+<tr>
+<td>Over $1M</td>
+<td>4.8%</td>
+<td>0.86</td>
+</tr>
+</tbody>
+</table>
+<h2 id="feature-importance">Feature Importance<a class="headerlink" href="#feature-importance" title="Permanent link">&para;</a></h2>
+<p>The top predictors of home prices, in order of importance:</p>
+<ol>
+<li><strong>Location (zip code/neighborhood)</strong>: 31.2% importance</li>
+<li><strong>Living area (square footage)</strong>: 16.4% importance</li>
+<li><strong>Lot size</strong>: 8.3% importance</li>
+<li><strong>School quality</strong>: 7.9% importance</li>
+<li><strong>Property age and condition</strong>: 7.5% importance</li>
+<li><strong>Proximity premium score</strong>: 6.8% importance</li>
+<li><strong>Bedrooms/bathrooms</strong>: 5.3% importance</li>
+<li><strong>Recent comparable sales</strong>: 4.1% importance</li>
+<li><strong>Market conditions (days on market, inventory)</strong>: 3.8% importance</li>
+<li><strong>Special features (pool, view, garage)</strong>: 2.9% importance</li>
+</ol>
+<p><img alt="Feature Importance Chart" src="../../assets/images/housing-features.jpg" /></p>
+<h2 id="implementation-and-deployment">Implementation and Deployment<a class="headerlink" href="#implementation-and-deployment" title="Permanent link">&para;</a></h2>
+<h3 id="web-application">Web Application<a class="headerlink" href="#web-application" title="Permanent link">&para;</a></h3>
+<p>The model is deployed as part of a web application with:</p>
+<ul>
+<li>Address search/map-based property selection</li>
+<li>Detailed valuation breakdown</li>
+<li>Comparable property suggestions</li>
+<li>Interactive "what-if" scenarios for renovations</li>
+<li>Confidence intervals for predictions</li>
+<li>Export and sharing functionality</li>
+</ul>
+<h3 id="api-integration">API Integration<a class="headerlink" href="#api-integration" title="Permanent link">&para;</a></h3>
+<p>The model is accessible via API for integration with:</p>
+<ul>
+<li>Real estate listing platforms</li>
+<li>Mortgage pre-approval systems</li>
+<li>Investment analysis tools</li>
+<li>Property portfolio management systems</li>
+</ul>
+<h3 id="mobile-application">Mobile Application<a class="headerlink" href="#mobile-application" title="Permanent link">&para;</a></h3>
+<p>A complementary mobile app provides:</p>
+<ul>
+<li>On-site valuation during property visits</li>
+<li>Camera integration for property assessment</li>
+<li>Augmented reality for visualizing renovation impact</li>
+</ul>
+<h2 id="real-world-applications-and-impact">Real-World Applications and Impact<a class="headerlink" href="#real-world-applications-and-impact" title="Permanent link">&para;</a></h2>
+<h3 id="case-study-residential-brokerage">Case Study: Residential Brokerage<a class="headerlink" href="#case-study-residential-brokerage" title="Permanent link">&para;</a></h3>
+<p>A residential real estate brokerage implemented the model to:</p>
+<ul>
+<li>Provide data-driven listing price recommendations</li>
+<li>Identify mispriced properties for clients</li>
+<li>Create objective valuation reports for sellers</li>
+</ul>
+<p><strong>Results:</strong>
+- 14% reduction in average days on market
+- 8% increase in buyer-side transactions
+- 22% increase in seller satisfaction scores</p>
+<h3 id="case-study-home-renovation-roi">Case Study: Home Renovation ROI<a class="headerlink" href="#case-study-home-renovation-roi" title="Permanent link">&para;</a></h3>
+<p>A home renovation company used the model to:</p>
+<ul>
+<li>Estimate value increase from specific renovations</li>
+<li>Prioritize renovation projects by ROI</li>
+<li>Create data-backed marketing materials</li>
+</ul>
+<p><strong>Results:</strong>
+- 31% increase in renovation project size
+- 18% increase in customer acquisition
+- 26% reduction in sales cycle length</p>
+<h2 id="challenges-and-solutions">Challenges and Solutions<a class="headerlink" href="#challenges-and-solutions" title="Permanent link">&para;</a></h2>
+<h3 id="challenge-1-limited-data-for-luxury-properties">Challenge 1: Limited Data for Luxury Properties<a class="headerlink" href="#challenge-1-limited-data-for-luxury-properties" title="Permanent link">&para;</a></h3>
+<p>Luxury and unique properties had few comparable sales for accurate prediction.</p>
+<p><strong>Solution</strong>: Implemented a separate model specifically for luxury properties using:
+- Metropolitan comparison approach (similar luxury homes across markets)
+- Hedonic pricing components with manual adjustments
+- Larger geographic range for comparable properties</p>
+<h3 id="challenge-2-rapid-market-changes-during-covid-19">Challenge 2: Rapid Market Changes During COVID-19<a class="headerlink" href="#challenge-2-rapid-market-changes-during-covid-19" title="Permanent link">&para;</a></h3>
+<p>The COVID-19 pandemic created rapid shifts in buyer preferences and pricing.</p>
+<p><strong>Solution</strong>: 
+- Implemented continuous retraining with time-weighted samples
+- Added COVID-specific features (home office potential, outdoor space)
+- Developed market shift detection to trigger model updates</p>
+<h3 id="challenge-3-explainability-for-stakeholders">Challenge 3: Explainability for Stakeholders<a class="headerlink" href="#challenge-3-explainability-for-stakeholders" title="Permanent link">&para;</a></h3>
+<p>Real estate professionals needed to understand predictions to trust them.</p>
+<p><strong>Solution</strong>:
+- Implemented SHAP (SHapley Additive exPlanations) values
+- Created natural language explanations of value factors
+- Developed visual comparison tools for similar properties</p>
+<h2 id="lessons-learned">Lessons Learned<a class="headerlink" href="#lessons-learned" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Hyperlocal factors matter</strong>: Even within neighborhoods, micromarket factors significantly impact value.</p>
+</li>
+<li>
+<p><strong>Temporal patterns are critical</strong>: Seasonal adjustments and market cycle positioning improve accuracy.</p>
+</li>
+<li>
+<p><strong>Subjective features can be quantified</strong>: Seemingly subjective factors like "view quality" can be effectively modeled.</p>
+</li>
+<li>
+<p><strong>User trust requires transparency</strong>: Users only adopt predictions they understand and can justify.</p>
+</li>
+<li>
+<p><strong>Domain expertise enhances models</strong>: Combining traditional appraisal methods with ML produces better results than either approach alone.</p>
+</li>
+</ol>
+<h2 id="future-enhancements">Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Computer Vision Integration</strong>: Automated assessment of property condition from photos</li>
+<li><strong>Macroeconomic Forecasting</strong>: Incorporating forward-looking economic indicators</li>
+<li><strong>Renovation Recommendation Engine</strong>: Suggesting specific improvements to maximize property value</li>
+<li><strong>Natural Language Processing</strong>: Extracting insights from listing descriptions and agent remarks</li>
+<li><strong>Climate Risk Modeling</strong>: Incorporating flood, fire, and climate change risk into valuations</li>
+</ul>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/yourusername/housing-price-prediction">GitHub Repository</a></li>
+<li><a href="https://housing-predictor-demo.herokuapp.com">Demo Application</a></li>
+<li><a href="https://example.com/housing-model-whitepaper.pdf">Technical Whitepaper</a></li>
+<li><a href="https://api.housing-predictor.example.com/docs">API Documentation</a> </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

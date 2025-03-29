@@ -1,0 +1,2090 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dodero10.github.io/projects/data-science/project2/">
+      
+      
+        <link rel="prev" href="../project1/">
+      
+      
+        <link rel="next" href="../project3/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Customer Churn Prediction Model - Dodero</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#customer-churn-prediction-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Dodero" class="md-header__button md-logo" aria-label="Dodero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dodero
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Customer Churn Prediction Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Dodero" class="md-nav__button md-logo" aria-label="Dodero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dodero
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Technology
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/technology/post1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Future of Web Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/technology/post2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started with Docker Containerization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/technology/post3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why TypeScript is Worth the Extra Effort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Personal
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Personal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/personal/post1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing a Morning Routine That Changed My Life
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/personal/post2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Digital Minimalism: How I Reclaimed My Attention and Focus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/personal/post3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Power of Deliberate Practice: How I Learned Piano at 30
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Travel
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Travel
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/travel/post1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A Week in Tokyo: Beyond the Tourist Traps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/travel/post2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Desert Dreams: Two Weeks Road Tripping Through the American Southwest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/travel/post3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Land of Fire and Ice: 10 Days Circling Iceland's Ring Road
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Web Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Web Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/project1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modern E-Commerce Platform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/project2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Portfolio Website Template
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/project3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Headless CMS for Developers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Data Science
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Data Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Social Media Sentiment Analysis Tool
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Customer Churn Prediction Model
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Customer Churn Prediction Model
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technology Stack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-processing-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Processing &amp; Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment &amp; Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources-and-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Sources and Feature Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Sources and Feature Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Sources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-importance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Importance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Explainability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-and-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment and Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment and Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-time-prediction-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Prediction API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-prediction-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Prediction Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-and-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results and Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results and Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-enterprise-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: Enterprise Segment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Enhancements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Real Estate Price Prediction Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Mobile Apps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Mobile Apps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobile/project1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FitTrack: Cross-Platform Fitness Tracking App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobile/project2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    QuickBite: On-Demand Food Delivery App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technology Stack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-processing-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Processing &amp; Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment &amp; Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources-and-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Sources and Feature Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Sources and Feature Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Sources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-importance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Importance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Explainability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-and-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment and Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment and Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-time-prediction-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Prediction API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-prediction-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Prediction Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-and-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results and Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results and Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-enterprise-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: Enterprise Segment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Enhancements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="customer-churn-prediction-model">Customer Churn Prediction Model<a class="headerlink" href="#customer-churn-prediction-model" title="Permanent link">&para;</a></h1>
+<p><img alt="Churn Prediction Dashboard" src="../../assets/images/churn-dashboard.jpg" /></p>
+<h2 id="project-overview">Project Overview<a class="headerlink" href="#project-overview" title="Permanent link">&para;</a></h2>
+<p>A machine learning model designed to predict customer churn for a subscription-based SaaS company. The system identifies customers at high risk of cancellation, analyzes factors contributing to churn, and recommends retention strategies to reduce customer attrition.</p>
+<h3 id="business-problem">Business Problem<a class="headerlink" href="#business-problem" title="Permanent link">&para;</a></h3>
+<p>The company was experiencing a monthly churn rate of 4.5%, significantly affecting revenue and growth. With customer acquisition costs rising, retaining existing customers became a critical business priority.</p>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Churn Prediction</strong>: Identifies customers likely to cancel with 83% accuracy</li>
+<li><strong>Risk Scoring</strong>: Assigns risk scores (1-100) to all customers</li>
+<li><strong>Key Indicators</strong>: Highlights the most influential factors for each at-risk customer</li>
+<li><strong>Automated Alerts</strong>: Notifies customer success teams about high-risk accounts</li>
+<li><strong>Segment Analysis</strong>: Identifies customer segments with highest churn rates</li>
+<li><strong>What-If Analysis</strong>: Simulates how changes to product or pricing might affect churn</li>
+<li><strong>ROI Calculator</strong>: Estimates financial impact of retention strategies</li>
+<li><strong>Integration</strong>: Connects with CRM and customer success platforms</li>
+</ul>
+<h2 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
+<h3 id="data-processing-analysis">Data Processing &amp; Analysis<a class="headerlink" href="#data-processing-analysis" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Python</strong>: Primary programming language</li>
+<li><strong>pandas</strong>: Data manipulation and analysis</li>
+<li><strong>NumPy</strong>: Numerical computing</li>
+<li><strong>scikit-learn</strong>: Machine learning algorithms</li>
+<li><strong>XGBoost</strong>: Gradient boosting implementation</li>
+<li><strong>SHAP</strong>: Model explainability</li>
+</ul>
+<h3 id="data-storage">Data Storage<a class="headerlink" href="#data-storage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>PostgreSQL</strong>: Primary database</li>
+<li><strong>Amazon S3</strong>: Data lake storage</li>
+<li><strong>dbt</strong>: Data transformation</li>
+</ul>
+<h3 id="deployment-monitoring">Deployment &amp; Monitoring<a class="headerlink" href="#deployment-monitoring" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Docker</strong>: Containerization</li>
+<li><strong>AWS SageMaker</strong>: Model deployment</li>
+<li><strong>Airflow</strong>: Workflow orchestration</li>
+<li><strong>MLflow</strong>: Model tracking and versioning</li>
+</ul>
+<h3 id="visualization">Visualization<a class="headerlink" href="#visualization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Tableau</strong>: Business intelligence dashboard</li>
+<li><strong>Plotly</strong>: Interactive visualizations</li>
+<li><strong>Streamlit</strong>: Internal tools and exploratory analysis</li>
+</ul>
+<h2 id="data-sources-and-feature-engineering">Data Sources and Feature Engineering<a class="headerlink" href="#data-sources-and-feature-engineering" title="Permanent link">&para;</a></h2>
+<h3 id="data-sources">Data Sources<a class="headerlink" href="#data-sources" title="Permanent link">&para;</a></h3>
+<p>The model uses data from multiple sources:</p>
+<ol>
+<li><strong>Product Usage Data</strong>: Feature usage, session frequency, session duration, etc.</li>
+<li><strong>Customer Information</strong>: Industry, company size, contract terms, etc.</li>
+<li><strong>Support Interactions</strong>: Ticket volume, resolution time, satisfaction scores</li>
+<li><strong>Billing History</strong>: Payment issues, plan changes, add-ons</li>
+<li><strong>Marketing Engagement</strong>: Email opens, webinar attendance, content downloads</li>
+</ol>
+<h3 id="feature-engineering">Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permanent link">&para;</a></h3>
+<p>Key engineered features that improved model performance:</p>
+<ul>
+<li><strong>Engagement Decline</strong>: Rate of decrease in product usage over time</li>
+<li><strong>Feature Adoption Ratio</strong>: Percentage of available features actively used</li>
+<li><strong>Support Sentiment Score</strong>: NLP-based sentiment analysis of support tickets</li>
+<li><strong>Time Since Last Activity</strong>: Days since the customer last used key features</li>
+<li><strong>Contract Lifecycle Stage</strong>: Normalized time position within contract period</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example of feature engineering for engagement decline</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_engagement_decline</span><span class="p">(</span><span class="n">usage_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the slope of engagement over the past 90 days</span>
+<span class="sd">    Negative values indicate declining engagement</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Group by week and calculate average daily usage</span>
+    <span class="n">weekly_usage</span> <span class="o">=</span> <span class="n">usage_data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)[</span><span class="s1">&#39;session_minutes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1"># Require at least 6 weeks of data</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">weekly_usage</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="c1"># Calculate slope using linear regression</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">weekly_usage</span><span class="p">)))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">weekly_usage</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">slope</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Normalize by the average usage</span>
+    <span class="n">avg_usage</span> <span class="o">=</span> <span class="n">weekly_usage</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">avg_usage</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">normalized_slope</span> <span class="o">=</span> <span class="n">slope</span> <span class="o">/</span> <span class="n">avg_usage</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">normalized_slope</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">normalized_slope</span>
+</code></pre></div>
+<h2 id="model-development">Model Development<a class="headerlink" href="#model-development" title="Permanent link">&para;</a></h2>
+<h3 id="approach">Approach<a class="headerlink" href="#approach" title="Permanent link">&para;</a></h3>
+<p>After experimenting with multiple algorithms, a stacked ensemble approach provided the best performance:</p>
+<ol>
+<li><strong>Base Models</strong>:</li>
+<li>Gradient Boosting Classifier (XGBoost)</li>
+<li>Random Forest Classifier</li>
+<li>
+<p>Logistic Regression with L1 regularization</p>
+</li>
+<li>
+<p><strong>Meta-learner</strong>:</p>
+</li>
+<li>Logistic Regression</li>
+</ol>
+<h3 id="training-process">Training Process<a class="headerlink" href="#training-process" title="Permanent link">&para;</a></h3>
+<ul>
+<li>70% of data used for training</li>
+<li>15% for validation (hyperparameter tuning)</li>
+<li>15% for testing (final evaluation)</li>
+<li>5-fold cross-validation during development</li>
+<li>Historical data from Jan 2021 to Dec 2022</li>
+<li>Class imbalance addressed with SMOTE and class weighting</li>
+</ul>
+<h3 id="evaluation-metrics">Evaluation Metrics<a class="headerlink" href="#evaluation-metrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accuracy</td>
+<td>83.2%</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>76.5%</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td>81.7%</td>
+</tr>
+<tr>
+<td>F1 Score</td>
+<td>79.0%</td>
+</tr>
+<tr>
+<td>AUC-ROC</td>
+<td>0.88</td>
+</tr>
+</tbody>
+</table>
+<p>We prioritized recall over precision to minimize false negatives (missed churn predictions), as the cost of a false negative (lost customer) exceeds the cost of a false positive (unnecessary retention effort).</p>
+<h3 id="feature-importance">Feature Importance<a class="headerlink" href="#feature-importance" title="Permanent link">&para;</a></h3>
+<p>The top predictors of churn, in order of importance:</p>
+<ol>
+<li><strong>Engagement trend (90 days)</strong>: Declining usage pattern</li>
+<li><strong>Support ticket sentiment</strong>: Negative sentiment in recent tickets</li>
+<li><strong>Feature adoption ratio</strong>: Low adoption of key features</li>
+<li><strong>Days since last login</strong>: Extended periods of inactivity</li>
+<li><strong>Contract renewal proximity</strong>: Approaching contract end date</li>
+</ol>
+<p><img alt="Feature Importance Chart" src="../../assets/images/feature-importance.jpg" /></p>
+<h2 id="model-explainability">Model Explainability<a class="headerlink" href="#model-explainability" title="Permanent link">&para;</a></h2>
+<p>We implemented SHAP (SHapley Additive exPlanations) to provide transparent, interpretable predictions:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Generate SHAP values for model explanations</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_customer_explanation</span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create personalized explanation for a customer&#39;s churn prediction&quot;&quot;&quot;</span>
+
+    <span class="c1"># Get model and explainer</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;churn_ensemble_v3&#39;</span><span class="p">)</span>
+    <span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Get customer data</span>
+    <span class="n">customer_data</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;customer_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">customer_id</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">customer_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Remove ID column for prediction</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">customer_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;customer_id&#39;</span><span class="p">,</span> <span class="s1">&#39;churned&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Calculate SHAP values</span>
+    <span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Generate explanation</span>
+    <span class="n">base_value</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span>
+    <span class="n">customer_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Get top factors</span>
+    <span class="n">feature_names</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">shap_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">feature_names</span><span class="p">,</span>
+        <span class="s1">&#39;shap_value&#39;</span><span class="p">:</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Sort by absolute value to get most influential features</span>
+    <span class="n">top_factors</span> <span class="o">=</span> <span class="n">shap_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">shap_df</span><span class="p">[</span><span class="s1">&#39;shap_value&#39;</span><span class="p">]))[</span><span class="o">-</span><span class="mi">5</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="c1"># Generate natural language explanation</span>
+    <span class="n">explanation</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;customer_id&#39;</span><span class="p">:</span> <span class="n">customer_id</span><span class="p">,</span>
+        <span class="s1">&#39;churn_probability&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">customer_prediction</span><span class="p">),</span>
+        <span class="s1">&#39;risk_level&#39;</span><span class="p">:</span> <span class="n">assign_risk_level</span><span class="p">(</span><span class="n">customer_prediction</span><span class="p">),</span>
+        <span class="s1">&#39;base_value&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">base_value</span><span class="p">),</span>
+        <span class="s1">&#39;top_factors&#39;</span><span class="p">:</span> <span class="n">top_factors</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;recommended_actions&#39;</span><span class="p">:</span> <span class="n">generate_recommendations</span><span class="p">(</span><span class="n">top_factors</span><span class="p">,</span> <span class="n">customer_data</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">explanation</span>
+</code></pre></div>
+<p>Each prediction includes:
+- Overall churn probability
+- Top 5 factors increasing/decreasing churn risk
+- Specific values for those factors
+- Comparison to typical values
+- Tailored retention recommendations</p>
+<h2 id="deployment-and-integration">Deployment and Integration<a class="headerlink" href="#deployment-and-integration" title="Permanent link">&para;</a></h2>
+<h3 id="real-time-prediction-api">Real-time Prediction API<a class="headerlink" href="#real-time-prediction-api" title="Permanent link">&para;</a></h3>
+<p>The model is deployed as a REST API using Flask and AWS SageMaker, integrated with:</p>
+<ol>
+<li><strong>CRM System</strong>: Displays risk scores on customer profiles</li>
+<li><strong>Customer Success Platform</strong>: Triggers workflows for at-risk customers</li>
+<li><strong>Internal Dashboard</strong>: Provides company-wide churn monitoring</li>
+</ol>
+<h3 id="batch-prediction-pipeline">Batch Prediction Pipeline<a class="headerlink" href="#batch-prediction-pipeline" title="Permanent link">&para;</a></h3>
+<p>A weekly batch process scores all customers and identifies newly at-risk accounts:</p>
+<ol>
+<li>Data extraction from data warehouse</li>
+<li>Feature generation and preprocessing</li>
+<li>Batch prediction using the ensemble model</li>
+<li>Results loaded into the application database</li>
+<li>Alerts generated for customers crossing risk thresholds</li>
+<li>Weekly summary reports for management</li>
+</ol>
+<h2 id="results-and-impact">Results and Impact<a class="headerlink" href="#results-and-impact" title="Permanent link">&para;</a></h2>
+<p>After six months in production, the model has delivered significant business value:</p>
+<ul>
+<li><strong>Churn reduction</strong>: Monthly churn decreased from 4.5% to 3.2%</li>
+<li><strong>Revenue impact</strong>: $1.2M in preserved annual recurring revenue</li>
+<li><strong>ROI</strong>: 8.5x return on the project investment</li>
+<li><strong>Efficiency</strong>: Customer success team can now focus on the 20% of customers who represent 80% of churn risk</li>
+<li><strong>Insights</strong>: Identified two previously unknown causes of churn that led to product improvements</li>
+</ul>
+<h3 id="case-study-enterprise-segment">Case Study: Enterprise Segment<a class="headerlink" href="#case-study-enterprise-segment" title="Permanent link">&para;</a></h3>
+<p>The most dramatic results came from the enterprise customer segment:
+- Previously had 3.8% monthly churn
+- Now reduced to 1.9% monthly churn
+- Retention efforts focused on account expansion and executive engagement
+- Average contract value increased by 15% for retained at-risk accounts</p>
+<h2 id="lessons-learned">Lessons Learned<a class="headerlink" href="#lessons-learned" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Behavioral signals outperform demographic data</strong>: How customers use the product is more predictive than who they are.</p>
+</li>
+<li>
+<p><strong>Early warning is critical</strong>: The model now identifies churn risk 60-90 days before cancellation, giving sufficient time for intervention.</p>
+</li>
+<li>
+<p><strong>Explainability drives adoption</strong>: Customer success teams were skeptical until they could understand predictions at an individual customer level.</p>
+</li>
+<li>
+<p><strong>Regular retraining is essential</strong>: We observed model drift after 3 months, necessitating a monthly retraining schedule.</p>
+</li>
+<li>
+<p><strong>Integration is as important as accuracy</strong>: Even a slightly less accurate model that integrates well with existing workflows delivers more business value than a marginally more accurate model that's difficult to use.</p>
+</li>
+</ol>
+<h2 id="future-enhancements">Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>NLP analysis of customer communications</strong>: Incorporating email, chat, and call transcripts</li>
+<li><strong>Earlier prediction window</strong>: Expanding from 60-90 days to 90-120 days</li>
+<li><strong>Prescriptive recommendations</strong>: Moving from identifying at-risk customers to recommending specific retention actions</li>
+<li><strong>Customer lifetime value integration</strong>: Prioritizing retention efforts based on potential long-term value</li>
+<li><strong>Expansion prediction</strong>: Identifying not just churn risk but also expansion opportunities</li>
+</ul>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/yourusername/churn-prediction">GitHub Repository</a></li>
+<li><a href="https://docs.example.com/churn-prediction">Technical Documentation</a></li>
+<li><a href="https://arxiv.org/abs/xxxx.xxxxx">Research Paper</a> </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
