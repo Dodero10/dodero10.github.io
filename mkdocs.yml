@@ -1,66 +1,227 @@
 site_name: Dodero
 site_url: https://dodero10.github.io
+site_author: Dodero
+site_description: A website I build to write about things I'm learning
+
+# repo_name: dodero/dodero10.github.io
+# repo_url: https://github.com/dodero10/dodero10.github.io
+
+copyright: Copyright &copy; 2025 Dodero
+
+# Configuration
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: material/overrides
   features:
-    - navigation.tabs
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.code.select
+    # - content.footnote.tooltips
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
     - navigation.sections
-    - navigation.expand
-    - toc.follow      # Makes TOC follow the user as they scroll
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
   palette:
-    # Optional color scheme customization
-    primary: indigo
-    accent: indigo
-  # logo: assets/avatar.jpg
-  # favicon: assets/avatar.jpg
-  # icon:
-  #   logo: material/account-circle
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+
+# Plugins
+plugins:
+  - blog
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+
+# Hooks
+hooks:
+  - material/overrides/hooks/shortcodes.py
+  - material/overrides/hooks/translations.py
+
+# Additional configuration
+extra:
+  status:
+    new: Recently added
+    deprecated: Deprecated
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/dodero10
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/No1Dodero
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/dat.130503
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+not_in_nav: |
+  /tutorials/**/*.md
+
 
 nav:
   - Home: index.md
-  - Blog:
+  - Blog: 
     - blog/index.md
     - Technology: 
-      - blog/technology/post1.md
-      - blog/technology/post2.md
-      - blog/technology/post3.md
+      - Post1: blog/technology/post1.md
+      - Post2: blog/technology/post2.md
+      - Post3: blog/technology/post3.md
     - Personal: 
-      - blog/personal/post1.md
-      - blog/personal/post2.md
-      - blog/personal/post3.md
+      - Post1: blog/personal/post1.md
+      - Post2: blog/personal/post2.md
+      - Post3: blog/personal/post3.md
     - Travel: 
-      - blog/travel/post1.md
-      - blog/travel/post2.md
-      - blog/travel/post3.md
+      - Post1: blog/travel/post1.md
+      - Post2: blog/travel/post2.md
+      - Post3: blog/travel/post3.md
   - Projects:
     - projects/index.md
     - Web Development: 
-      - projects/web/project1.md
-      - projects/web/project2.md
-      - projects/web/project3.md
+      - Project1: projects/web/project1.md
+      - Project2: projects/web/project2.md
+      - Project3: projects/web/project3.md
     - Data Science: 
-      - projects/data-science/project1.md
-      - projects/data-science/project2.md
-      - projects/data-science/project3.md
+      - Project1: projects/data-science/project1.md
+      - Project2: projects/data-science/project2.md
+      - Project3: projects/data-science/project3.md
     - Mobile Apps: 
-      - projects/mobile/project1.md
-      - projects/mobile/project2.md
-      # - projects/mobile/project3.md  # Commenting out since file doesn't exist yet
-  # - Learn:
-  #   - learn/index.md
-  #   - Programming: 
-  #     - learn/programming/tutorial1.md
-  #     - learn/programming/tutorial2.md
-  #     - learn/programming/tutorial3.md
-  #   - Machine Learning: 
-  #     - learn/machine-learning/tutorial1.md
-  #     - learn/machine-learning/tutorial2.md
-  #     - learn/machine-learning/tutorial3.md
-  #   - Cloud Computing: 
-  #     - learn/cloud/tutorial1.md
-  #     - learn/cloud/tutorial2.md
-  #     - learn/cloud/tutorial3.md
+      - Project1: projects/mobile/project1.md
+      - Project2: projects/mobile/project2.md
+      # - Project3: projects/mobile/project3.md  # Commenting out since file doesn't exist yet
+  - Learn:
+    - AI Agents:
+      - Introduction:
+        - learn/ai-agents/introduction_ai_agents.md
+        - learn/ai-agents/why_ai_agents_matter.md
+      - Fundamentals:
+        - learn/ai-agents/agents_core_components.md
+        - learn/ai-agents/types_of_ai_agents.md
+        - learn/ai-agents/memory_in_ai_agents.md
+        - learn/ai-agents/human_in_the_loop.md
+      - Agentic Patterns:
+        - learn/ai-agents/agentic_reflection.md
+        - learn/ai-agents/agentic_planning.md
+        - learn/ai-agents/agentic_tool_use.md
+        - learn/ai-agents/multi_agent_collaboration.md
+      - Agentic Workflows:
+        - learn/ai-agents/prompt_chaining.md
+        - learn/ai-agents/routing.md
+        - learn/ai-agents/parallelization.md
+        - learn/ai-agents/orchestrator_worker_model.md
+        - learn/ai-agents/evaluator_optimizer_workflow.md
+      - Frameworks & Tools:
+        - learn/ai-agents/langchain_and_langgraph.md
+        - learn/ai-agents/llamaindex_adw.md
+        - learn/ai-agents/crewAI_and_autogen.md
+        - learn/ai-agents/vertex_ai_and_bedrock.md
+      - Agentic RAG Paradigms:
+        - learn/ai-agents/single_agent_rag.md
+        - learn/ai-agents/multi_agent_rag.md
+        - learn/ai-agents/hierarchical_rag.md
+        - learn/ai-agents/corrective_rag.md
+        - learn/ai-agents/adaptive_rag.md
+        - learn/ai-agents/graph_based_rag.md
+      - Real-World Applications:
+        - learn/ai-agents/agentic_rag_in_healthcare.md
+        - learn/ai-agents/agentic_rag_in_finance.md
+        - learn/ai-agents/agentic_rag_in_education.md
+        - learn/ai-agents/agentic_rag_in_customer_support.md
+      - Best Practices:
+        - learn/ai-agents/evaluating_ai_agents.md
+        - learn/ai-agents/performance_and_scalability.md
+        - learn/ai-agents/ethical_considerations.md
+
   - About: about.md
   - Setup: setup-github-comments.md
 
@@ -72,6 +233,3 @@ markdown_extensions:
   - toc:
       permalink: true
 
-plugins:
-  - search
-  - meta
