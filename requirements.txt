@@ -1,4 +1,5 @@
 mkdocs
 mkdocs-material
 mkdocs-meta-descriptions-plugin
+mkdocs-minify-plugin
 
