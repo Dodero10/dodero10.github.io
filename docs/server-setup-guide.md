@@ -1,5 +1,8 @@
 # 🚀 Hướng dẫn đầy đủ: Public API Server qua Domain với Nginx Reverse Proxy
 
+!!! info "Tài liệu liên quan"
+    Bạn muốn hiểu sâu hơn về lý thuyết? Xem [📚 Lý thuyết: Giải thích các thành phần](server-setup-theory.md) để hiểu cách hoạt động của từng thành phần.
+
 ## 📋 Tổng quan
 
 Expose local service (chạy trên localhost:PORT) ra internet qua domain với HTTPS.
@@ -12,7 +15,164 @@ Internet → domain.xyz (HTTPS) → Nginx Reverse Proxy → localhost:PORT (Your
 
 ---
 
-## 🔧 Bước 1: Chuẩn bị
+## ⚡ Quick Start: Nếu đã có Nginx và Certbot sẵn
+
+Nếu bạn đã cài đặt Nginx và Certbot rồi, làm theo các bước sau (bỏ qua phần cài đặt):
+
+### 1. Kiểm tra service đang chạy
+
+```bash
+# Kiểm tra service của bạn đang chạy trên port nào (ví dụ: 8080)
+curl http://localhost:8080/health
+```
+
+**✅ Phải thấy response từ service, không được Connection Refused**
+
+### 2. Kiểm tra Nginx và Certbot đã cài
+
+```bash
+# Kiểm tra Nginx
+nginx -v
+sudo systemctl status nginx
+
+# Kiểm tra Certbot
+certbot --version
+```
+
+### 3. Lấy SSL certificate (nếu chưa có cho domain này)
+
+```bash
+# Lấy SSL certificate cho domain
+sudo certbot --nginx -d api.yourdomain.xyz
+
+# Làm theo hướng dẫn:
+# - Nhập email
+# - Đồng ý Terms of Service (Y)
+# - Chọn redirect HTTP to HTTPS (khuyến nghị: 2)
+```
+
+**Lưu ý:** Nếu domain đã có SSL certificate rồi, bạn có thể bỏ qua bước này.
+
+### 4. Backup và cấu hình Nginx Reverse Proxy
+
+```bash
+# Backup file config cũ (quan trọng!)
+sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.backup
+
+# Xóa các file config trùng lặp (nếu có)
+grep -r "api.yourdomain.xyz" /etc/nginx/sites-available/
+grep -r "api.yourdomain.xyz" /etc/nginx/sites-enabled/
+```
+
+**Tạo file config mới:**
+
+```bash
+sudo nano /etc/nginx/sites-available/api-server
+```
+
+Paste nội dung sau (thay `api.yourdomain.xyz` và `PORT` - ví dụ: 8080):
+
+```nginx
+# HTTP -> HTTPS redirect
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name api.yourdomain.xyz;
+    
+    return 301 https://$host$request_uri;
+}
+
+# HTTPS - Main config
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    
+    server_name api.yourdomain.xyz;
+    
+    # SSL Certificate (Certbot tự động thêm)
+    ssl_certificate /etc/letsencrypt/live/api.yourdomain.xyz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.yourdomain.xyz/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    
+    # Proxy to your service
+    location / {
+        # THAY ĐỔI PORT Ở ĐÂY (8080, 3000, 5000...)
+        proxy_pass http://127.0.0.1:8080;
+        
+        proxy_http_version 1.1;
+        
+        # WebSocket support (nếu cần streaming)
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        
+        # Headers
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # Disable buffering (tốt cho streaming/LLM)
+        proxy_buffering off;
+        proxy_cache off;
+        
+        # Increase timeouts (tốt cho LLM/long-running tasks)
+        proxy_connect_timeout 600s;
+        proxy_send_timeout 600s;
+        proxy_read_timeout 600s;
+    }
+    
+    # Health check endpoint (optional)
+    location /nginx-health {
+        access_log off;
+        return 200 "Nginx OK\n";
+        add_header Content-Type text/plain;
+    }
+}
+```
+
+**Enable site và reload:**
+
+```bash
+# Tạo symbolic link
+sudo ln -s /etc/nginx/sites-available/api-server /etc/nginx/sites-enabled/
+
+# Test cấu hình
+sudo nginx -t
+
+# Nếu OK, reload Nginx
+sudo systemctl reload nginx
+```
+
+### 5. Test
+
+```bash
+# Test từ server (qua domain)
+curl https://api.yourdomain.xyz/health
+
+# Test từ máy tính khác
+curl https://api.yourdomain.xyz/health
+```
+
+**✅ Nếu thấy response từ service của bạn là thành công!**
+
+---
+
+!!! tip "Chi tiết và Troubleshooting"
+    Xem các phần sau để biết thêm chi tiết và cách xử lý lỗi:
+    - [Bước 3: Cấu hình Nginx Reverse Proxy](#-bước-3-cấu-hình-nginx-reverse-proxy) - Chi tiết cấu hình
+    - [Bước 4: Test và Troubleshoot](#-bước-4-test-và-troubleshoot) - Xử lý lỗi thường gặp
+    - [Bước 5: Firewall](#-bước-5-firewall-quan-trọng) - Cấu hình firewall
+
+---
+
+## 🔧 Bước 1: Chuẩn bị (Đầy đủ)
 
 ### 1.1. Kiểm tra service đang chạy
 
@@ -61,7 +221,10 @@ dig api.yourdomain.xyz
 
 ---
 
-## 🔐 Bước 2: Cài đặt Nginx và SSL
+## 🔐 Bước 2: Cài đặt Nginx và SSL (Bỏ qua nếu đã có sẵn)
+
+!!! note "Lưu ý"
+    Nếu bạn đã có Nginx và Certbot sẵn, bạn có thể bỏ qua phần này và xem phần [Quick Start](#-quick-start-nếu-đã-có-nginx-và-certbot-sẵn) ở trên.
 
 ### 2.1. Cài Nginx
 

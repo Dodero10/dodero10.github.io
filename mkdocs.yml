@@ -151,7 +151,9 @@ not_in_nav: |
 
 nav:
   - Home: index.md
-  - Server Setup: server-setup-guide.md
+  - "🚀 Server Setup": 
+    - "Hướng dẫn Setup": server-setup-guide.md
+    - "Lý thuyết & Giải thích": server-setup-theory.md
   - Blog: 
     - blog/index.md
     - Technology: 
