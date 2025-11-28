@@ -2,102 +2,106 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://dodero10.github.io/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/about/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
+    </url>
+    <url>
+         <loc>https://dodero10.github.io/server-setup-guide/</loc>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/setup-github-comments/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/personal/post1/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/personal/post2/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/personal/post3/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/technology/post1/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/technology/post2/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/technology/post3/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/travel/post1/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/travel/post2/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/blog/travel/post3/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/learn/ai-agents/introduction_ai_agents/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/learn/llms/introduction_llms/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/learn/rag/introduction_rag/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/data-science/project1/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/data-science/project2/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/data-science/project3/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/mobile/project1/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/mobile/project2/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/web/project1/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/web/project2/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
     <url>
          <loc>https://dodero10.github.io/projects/web/project3/</loc>
-         <lastmod>2025-05-14</lastmod>
+         <lastmod>2025-11-28</lastmod>
     </url>
 </urlset>
