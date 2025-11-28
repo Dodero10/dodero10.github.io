@@ -151,6 +151,7 @@ not_in_nav: |
 
 nav:
   - Home: index.md
+  - "🚀 Server Setup": server-setup-guide.md
   - Blog: 
     - blog/index.md
     - Technology: 
